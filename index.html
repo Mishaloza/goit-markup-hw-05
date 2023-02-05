@@ -32,7 +32,7 @@
 
           <ul class="header-list list">
             <li class="header-item item">
-              <a href="./index.html" class="header-link link">Studio</a>
+              <a href="./index.html" class="header-link link current">Studio</a>
             </li>
 
             <li class="header-item item">
@@ -71,11 +71,22 @@
         <div class="hero-container container">
           <h1 class="hero-title">Effective Solutions for Your Business</h1>
 
-          <button type="button" class="hero-button button">
+          <button type="button" class="hero-button button" data-modal-open>
             Order Service
           </button>
         </div>
       </section>
+
+      <!--BACKDROP -->
+      <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+          <button type="button" class="modal-close-button" data-modal-close>
+            <svg class="close-icon" width="8px" height="8px">
+              <use href="./images/symbol-defs.svg#icon-close"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <!-- ADVENTAGES -->
       <section class="section-adventages">

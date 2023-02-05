@@ -7,6 +7,8 @@
   --header-logo-studio-color: #2e2f42;
   --header-link-color: #434455;
   --header-link-hover-focus-color: #4d5ae5;
+  --header-linkk-botton-line-color: #404bbf;
+  --header-border-color: #e7e9fc;
 
   --hero-bgr-color: #2e2f42;
   --hero-title-color: #ffffff;
@@ -49,10 +51,33 @@
   --portfolio-link-box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
   --portfolio-link-box-hover-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  --portfolio-card-hover-bgr-color: #4d5ae5;
+  --portfolio-text-bgr-color: #f4f4fd;
 
   --customers-item-link-color: #8e8f99;
   --customers-item-link-border-color: #8e8f99;
   --customers-item-link-hover-color: #404bbf;
+
+  --backdrop-bgr-color: rgba(46, 47, 66, 0.4);
+  --modal-bgr-color: #fcfcfc;
+  --modal-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  --close-btn-bgr-color: #e7e9fc;
+  --close-btn-border: 1px solid rgba(0, 0, 0, 0.1);
+  --close-icon-color: #000000;
+  --close-btn-bgr-hover-color: #404bbf;
+  --close-icon-hover-color: #ffffff;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 img {
@@ -143,9 +168,16 @@ body {
 
 /* --------------- HEADER --------------- */
 .header {
-  border-bottom: 1px solid var(--footer-subtitle-color);
+  /* position: fixed;
+  left: 50%;
+  top: 0;
+  transform: translate(-55%, 0);
+  display: flex;
+  justify-content: center; */
+  border-bottom: 1px solid var(--header-border-color);
 }
 .header-container {
+  /* position: fixed; */
   display: flex;
   justify-content: space-between;
 }
@@ -178,10 +210,25 @@ body {
   width: 261px;
 }
 .header-link {
+  position: relative;
   display: block;
   font-weight: 500;
   color: var(--header-link-color);
   padding: 24px 0;
+}
+
+.header-link::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--header-linkk-botton-line-color);
+}
+
+.header-link::after:hover .header-link::after:focus {
 }
 
 .header-address-item {
@@ -193,7 +240,8 @@ body {
 }
 
 .header-link:hover,
-.header:link:focus {
+.header:link:focus,
+.current {
   color: var(--header-link-hover-focus-color);
 }
 
@@ -211,6 +259,10 @@ body {
 
 /* --------------- HERO --------------- */
 .hero {
+  /* margin-top: 72px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 0; */
   margin: 0 auto;
   background: var(--hero-bgr-color);
   max-width: 1440px;
@@ -251,6 +303,55 @@ body {
 .hero-button:hover,
 .hero-button:focus {
   background: var(--hero-btn-bgr-color-hover-focus);
+}
+
+/* --------------- BACKDROP --------------- */
+
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--backdrop-bgr-color);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 408px;
+  height: 576px;
+  background: var(--modal-bgr-color);
+  box-shadow: var(--modal-box-shadow);
+  border-radius: 4px;
+}
+
+.modal-close-button {
+  position: absolute;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  right: 24px;
+  top: 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--close-btn-bgr-color);
+  border: var(--close-btn-border);
+  border-radius: 50%;
+  fill: var(--close-icon-color);
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+  background-color: var(--close-btn-bgr-hover-color);
+  fill: var(--close-icon-hover-color);
 }
 
 /* --------------- ADVANTAGES --------------- */
@@ -424,9 +525,10 @@ body {
   background-color: var(--footer-icon-bgr-hover-focus);
 }
 
-/* --------------- PORTFOLIO --------------- */
+/* --------------- PORTFOLIO BUTTONS--------------- */
 .portfolio {
-  padding-top: 96px;
+  /* padding-top: 168px; */
+  margin-top: 96px;
   padding-bottom: 120px;
 }
 
@@ -459,6 +561,8 @@ body {
   border-color: transparent;
 }
 
+/* --------------- PORTFOLIO CARDS--------------- */
+
 .portfolio-cards-list {
   display: flex;
   flex-wrap: wrap;
@@ -479,6 +583,27 @@ body {
 
 .portfolio-cards-item-title {
   color: var(--item-title-color);
+}
+
+.portfolio-card-box {
+  position: relative;
+}
+
+.portfolio-card-box-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px 164px;
+  background-color: var(--portfolio-card-hover-bgr-color);
+  color: var(--portfolio-text-bgr-color);
+  opacity: 0;
+}
+
+.portfolio-card-box-overlay:hover,
+.portfolio-card-box-overlay:focus {
+  opacity: 1;
 }
 
 .cards-content-container {
