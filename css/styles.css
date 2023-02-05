@@ -328,15 +328,16 @@ body {
   left: 0;
   background-color: var(--backdrop-bgr-color);
 
-  transition: transform 500ms var(--standart-cubic);
+  transition: transform 500ms var(--standart-cubic),
+    opacity 500ms var(--standart-cubic);
   transform: scaleY(1);
+  opacity: 1;
 }
 
 .backdrop.is-hidden {
-  /* opacity: 0; */
-
   transform: scaleY(0);
   pointer-events: none;
+  opacity: 0;
 }
 
 .modal {
